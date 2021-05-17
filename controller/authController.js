@@ -16,6 +16,24 @@ exports.getUser=async(req,res,next)=>{
     )
 }
 
+exports.checkUsername=async(req,res,next)=>{
+    await User.findOne(
+        {username:req.params.username},
+        (error,result)=>{
+            if(error) return res.status(500).json({msg:error})
+            if(result!=null){
+                return res.json({
+                    Status=true
+                })
+            }else{
+                return res.json({
+                    Status=false
+                })
+            }
+        }
+    )
+}
+
 exports.loginUser=async(req,res,next)=>{
     await User.findOne(
         {username:req.body.username},
