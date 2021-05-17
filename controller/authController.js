@@ -23,11 +23,11 @@ exports.checkUsername=async(req,res,next)=>{
             if(error) return res.status(500).json({msg:error})
             if(result!=null){
                 return res.json({
-                    Status=true
+                    Status:true
                 })
-            }else{
+            }else{ 
                 return res.json({
-                    Status=false
+                    Status:false
                 })
             }
         }
