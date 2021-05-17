@@ -21,7 +21,7 @@ exports.checkUsername=async(req,res,next)=>{
         {username:req.params.username},
         (error,result)=>{
             if(error) return res.status(500).json({msg:error})
-            if(result!=null){
+            if(result!==null){
                 return res.json({
                     Status:true
                 })
