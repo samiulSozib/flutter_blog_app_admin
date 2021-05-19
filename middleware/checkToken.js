@@ -14,7 +14,7 @@ exports.checkToken=(req,res,next)=>{
                     msg:token
                 })
             }else{
-                res.decoded=decoded
+                req.decoded=decoded
                 next()
             }
         })
