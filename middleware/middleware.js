@@ -2,8 +2,8 @@ const express=require('express')
 const morgan=require('morgan')
 
 const middleware=[
-    morgan('dev'),
     express.static('public'),
+    morgan('dev'),
     express.urlencoded({extended:true}),
     express.json()
 ]
