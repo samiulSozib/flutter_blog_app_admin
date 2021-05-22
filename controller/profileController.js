@@ -17,3 +17,16 @@ exports.addProfileController=async(req,res,next)=>{
             return res.status(400).json({error:error})
         })
 }
+
+exports.checkProfile=async(req,res,next)=>{
+    Profile.findOne({username:req.decoded.username},(error,result)=>{
+        if(error) {
+            return res.json({message:error})
+        }
+        else if(result==null){
+            return res.json({Status:false});
+        }else{
+            return res.json({Status:true});
+        }
+    })
+}
