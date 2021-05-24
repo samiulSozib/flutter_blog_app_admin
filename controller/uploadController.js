@@ -1,15 +1,15 @@
 const Profile=require('../model/Profile')
-const path=require("path")
+const _path=require("path")
 
-exports.uploadPprofileImage=async(req,res,next)=>{
+exports.uploadPprofileImage=(req,res,next)=>{
     if(req.file){
         try{
-            await Profile.findOneAndUpdate(
+            Profile.findOneAndUpdate(
                 {
                     username:req.decoded.username
                 },{
                     $set:{
-                        // image:req.file.path
+                        //image:req.file._path,
                         image:`/uploads/${req.file.filename}`
                     }
                 },{
