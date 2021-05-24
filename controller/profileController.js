@@ -6,7 +6,7 @@ exports.addProfileController=async(req,res,next)=>{
         username:req.decoded.username,
         name:req.body.name,
         title:req.body.title,
-        abouut:req.body.about
+        about:req.body.about
 
     });
 
