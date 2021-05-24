@@ -30,3 +30,47 @@ exports.checkProfile=async(req,res,next)=>{
         }
     })
 }
+
+exports.getProfileData=async(req,res,next)=>{
+    await Profile.findOne({
+        username:req.decoded.username
+    },(error,result)=>{
+        if(error){
+            return res.json({msg:error})
+        }
+        if(result==null){
+            return res.json({data:[]})
+        }else{
+            return res.json({data:result})
+        }
+    })
+}
+
+exports.updateProfileData=async(req,res,next)=>{
+    let profile={}
+    await Profile.findOne({ username: req.decoded.username }, (err, result) => {
+        if (err) {
+          profile = {};
+        }
+        if (result != null) {
+          profile = result;
+        }
+      });
+
+      Profile.findOneAndUpdate(
+        { username: req.decoded.username },
+        {
+          $set: {
+            name: req.body.name ? req.body.name : profile.name,
+            titleline: req.body.titleline ? req.body.titleline : profile.titleline,
+            about: req.body.about ? req.body.about : profile.about, 
+          },
+        },
+        { new: true },
+        (err, result) => {
+          if (err) return res.json({ err: err });
+          if (result == null) return res.json({ data: [] });
+          else return res.json({ data: result });
+        }
+      );
+    }
