@@ -1,5 +1,5 @@
 const Profile=require('../model/Profile')
-const _path=require("path")
+const _path=require('path')
 
 exports.uploadPprofileImage=(req,res,next)=>{
     if(req.file){
@@ -9,8 +9,8 @@ exports.uploadPprofileImage=(req,res,next)=>{
                     username:req.decoded.username
                 },{
                     $set:{
-                        //image:req.file._path,
-                        image:`/uploads/${req.file.filename}`
+                        image:req.file._path,
+                        //image:`/uploads/${req.file.filename}`
                     }
                 },{
                     new:true
