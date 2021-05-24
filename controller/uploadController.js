@@ -1,17 +1,15 @@
 const Profile=require('../model/Profile')
-const _path=require('path')
+const path=require('path')
 
 exports.uploadPprofileImage=(req,res,next)=>{
-    if(req.file){
-        try{
             Profile.findOneAndUpdate(
                 {
                     username:req.decoded.username
                 },{
                     $set:{
-                        image:req.file._path,
+                        image:req.file.path,
                         //image:`/uploads/${req.file.filename}`
-                    }
+                    },
                 },{
                     new:true
                 },(error,profile)=>{
@@ -25,10 +23,4 @@ exports.uploadPprofileImage=(req,res,next)=>{
                     return res.status(200).send(response)
                 }
             )
-        }catch(e){
-            res.json({
-                msg:"something wrong"
-            })
-        }
-    }
-}
+    };
