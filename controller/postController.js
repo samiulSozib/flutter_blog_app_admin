@@ -13,3 +13,14 @@ exports.createPostController=async(req,res,next)=>{
         res.json({error:err})
     })
 }
+
+
+exports.getOwnPost=async(req,res,next)=>{
+    Post.find({username:req.decoded.username},(error,result)=>{
+        if(error){
+            res.json(error)
+        }else{
+            res.json({data:result})
+        }
+    })
+}
