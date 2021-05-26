@@ -24,3 +24,30 @@ exports.getOwnPost=async(req,res,next)=>{
         }
     })
 }
+
+exports.getOthersPost=async(req,res,next)=>{
+    Post.find({username:{$ne:req.decoded.username}},(error,result)=>{
+        if(error){
+            return res.json(error)
+        }else{
+            return res.json({data:result})
+        }
+    })
+}
+
+exports.deletePost=async(req, res,next) => {
+    Post.findOneAndDelete(
+      {
+        $and: [{ username: req.decoded.username }, { _id: req.params.id }],
+      },
+      (err, result) => {
+        if (err) return res.json(err);
+        else if (result) {
+          console.log(result);
+          return res.json("Post deleted");
+        }
+        return res.json("Post not deleted");
+      }
+    );
+  }
+  
