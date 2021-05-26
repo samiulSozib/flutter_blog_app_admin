@@ -1,5 +1,6 @@
 const authRoute=require('./authRoute')
 const profileRoute=require('./profileRoute')
+const postRoute=require('./postRoute')
 
 const routes=[
     {
@@ -9,6 +10,10 @@ const routes=[
     {
         path:'/profile',
         handler:profileRoute
+    },
+    {
+        path:'/post',
+        handler:postRoute
     },
     {
         path:'/',
