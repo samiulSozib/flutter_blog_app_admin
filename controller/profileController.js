@@ -24,9 +24,9 @@ exports.checkProfile=async(req,res,next)=>{
             return res.json({message:error})
         }
         else if(result==null){
-            return res.json({Status:false});
+            return res.json({Status:false,username:req.decoded.username});
         }else{
-            return res.json({Status:true});
+            return res.json({Status:true,username:req.decoded.username});
         }
     })
 }
