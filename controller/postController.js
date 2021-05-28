@@ -20,7 +20,7 @@ exports.getOwnPost=async(req,res,next)=>{
         if(error){
             res.json(error)
         }else{
-            res.json({data:result})
+            res.json(result)
         }
     })
 }
@@ -30,7 +30,7 @@ exports.getOthersPost=async(req,res,next)=>{
         if(error){
             return res.json(error)
         }else{
-            return res.json({data:result})
+            return res.json(result)
         }
     })
 }
