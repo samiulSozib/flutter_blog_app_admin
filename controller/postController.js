@@ -50,4 +50,15 @@ exports.deletePost=async(req, res,next) => {
       }
     );
   }
+
+
   
+exports.getAllPost=async(req,res,next)=>{
+    Post.find((error,result)=>{
+        if(error){
+            return res.json(error)
+        }else{
+            return res.json({data:result})
+        }
+    })
+}
